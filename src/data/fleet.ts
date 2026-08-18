@@ -29,7 +29,7 @@ export const fleet: Vehicle[] = [
       photo: white ? CYBERCAB_WHITE : CYBERCAB_GOLD,
       notes: white
         ? "Pearl unpainted Cybercab. Butterfly doors, lounge bench, no wheel."
-        : "Champagne Cybercab. Two-seat robotaxi, teardrop body, aero covers.",
+        : "Champagne Cybercab. Two-seat robotaxi, butterfly greenhouse, aero covers.",
     };
   }),
   {

@@ -15,18 +15,18 @@ Open the printed local URL (default `http://localhost:5173`).
 
 ## 3D vehicles
 
-Original studio models (not Tesla marketing files) live in `public/models/cybercab.glb` and `public/models/model-y.glb`.
+Original hard-surface studio cars (not Tesla marketing files, not sphere morphs).
 
-- Desktop: loads the GLB, studio lighting, ground contact shadow.
-- Mobile / compact cards: a lighter runtime mesh (fewer segments).
-- Orbit: drag. Zoom: pinch or scroll. Paint chips switch champagne/pearl (Cybercab) and pearl/stealth (Model Y).
-- Full inspector: `/inspect/cybercab` and `/inspect/model-y`.
+Source of truth is `src/vehicles/buildVehicles.ts`:
 
-Regenerate meshes:
+- Cybercab: extruded Giga Texas silhouette (wheel wells, hood, high belt, solid rear), butterfly greenhouse glass, full-width light bar, aero discs, no mirrors / no rear window.
+- Model Y: extruded Juniper crossover (ride height, C-pillar, hatch), glass roof, mirrors, five-spoke wheels, full-width bars.
+- Materials: automotive PBR (metallic/unpainted champagne, pearl, stealth grey) with clearcoat, transmitting glass, rubber tires, emissive bars.
+- Stage: black studio, Poly Haven `studio_small_08` HDRI (`public/env/studio.hdr`, CC0), wrap + rim lights, contact shadow, floor reflection, ACES. Phones skip the reflector and use a lighter mesh.
 
-```bash
-npm run export:models
-```
+Exported copies: `public/models/cybercab.glb` and `public/models/model-y.glb` (`npm run export:models`).
+
+Orbit: drag. Zoom: pinch or scroll. Paint chips switch champagne/pearl (Cybercab) and pearl/stealth (Model Y). Inspector: `/inspect/cybercab` and `/inspect/model-y`.
 
 ## Interior films
 

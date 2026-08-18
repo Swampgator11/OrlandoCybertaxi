@@ -1,14 +1,7 @@
-import { Suspense, useEffect, useLayoutEffect, useMemo } from "react";
-import { Canvas, useThree } from "@react-three/fiber";
-import { ContactShadows, MeshReflectorMaterial, OrbitControls } from "@react-three/drei";
-import {
-  ACESFilmicToneMapping,
-  PMREMGenerator,
-  SRGBColorSpace,
-  type Group,
-  type Mesh,
-} from "three";
-import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { Suspense, useEffect, useMemo } from "react";
+import { Canvas } from "@react-three/fiber";
+import { ContactShadows, Environment, MeshReflectorMaterial, OrbitControls } from "@react-three/drei";
+import { ACESFilmicToneMapping, SRGBColorSpace, type Group, type Mesh } from "three";
 import type { Paint, VehicleType } from "../data/fleet";
 import { buildCybercab, buildModelY } from "../vehicles/buildVehicles";
 
@@ -19,22 +12,6 @@ type Props = {
   autoRotate?: boolean;
   className?: string;
 };
-
-function Studio() {
-  const { gl, scene } = useThree();
-  useLayoutEffect(() => {
-    const pmrem = new PMREMGenerator(gl);
-    const env = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-    scene.environment = env;
-    scene.background = null;
-    return () => {
-      scene.environment = null;
-      env.dispose();
-      pmrem.dispose();
-    };
-  }, [gl, scene]);
-  return null;
-}
 
 function Car({ type, paint, segments }: { type: VehicleType; paint: Paint; segments: number }) {
   const object = useMemo<Group>(() => {
@@ -60,28 +37,29 @@ function Stage({ type, paint, compact, autoRotate }: Omit<Props, "className">) {
   const mobile = typeof window !== "undefined" && window.matchMedia("(max-width: 720px)").matches;
   const light = Boolean(compact || mobile);
   const tall = type === "model-y";
-  const targetY = tall ? 0.68 : 0.52;
+  const targetY = tall ? 0.78 : 0.62;
 
   return (
     <>
       <color attach="background" args={["#000000"]} />
-      <Studio />
-      <ambientLight intensity={0.08} />
-      <directionalLight position={[3.8, 6.4, 2.6]} intensity={1.15} />
-      <directionalLight position={[-4.2, 2.2, -2.4]} intensity={0.28} color="#c9d2dc" />
-      <Car type={type} paint={paint} segments={light ? 28 : 64} />
-      <ContactShadows opacity={0.55} scale={14} blur={2.8} far={3.2} color="#000" />
+      <Environment files="/env/studio.hdr" background={false} environmentIntensity={0.95} />
+      <ambientLight intensity={0.06} />
+      <directionalLight position={[3.6, 6.8, 3.2]} intensity={1.25} />
+      <directionalLight position={[-5.2, 2.4, -2.8]} intensity={0.32} color="#c5d0dc" />
+      <directionalLight position={[0.2, 2.8, 5.4]} intensity={0.35} />
+      <Car type={type} paint={paint} segments={light ? 24 : 56} />
+      <ContactShadows opacity={0.58} scale={16} blur={2.6} far={3.4} color="#000" />
       {!light && (
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.001, 0]}>
-          <circleGeometry args={[9, 64]} />
+          <circleGeometry args={[10, 64]} />
           <MeshReflectorMaterial
-            blur={[300, 80]}
+            blur={[280, 70]}
             resolution={768}
             mixBlur={1}
-            mixStrength={28}
-            roughness={0.92}
+            mixStrength={26}
+            roughness={0.9}
             color="#080808"
-            metalness={0.55}
+            metalness={0.58}
           />
         </mesh>
       )}
@@ -91,12 +69,12 @@ function Stage({ type, paint, compact, autoRotate }: Omit<Props, "className">) {
         enableDamping
         dampingFactor={0.06}
         target={[0, targetY, 0]}
-        minPolarAngle={0.85}
-        maxPolarAngle={1.38}
-        minDistance={compact ? 4.6 : 4.2}
-        maxDistance={compact ? 7.8 : 8.2}
+        minPolarAngle={0.88}
+        maxPolarAngle={1.4}
+        minDistance={compact ? 5.2 : 4.8}
+        maxDistance={compact ? 8.4 : 9.2}
         autoRotate={autoRotate !== false}
-        autoRotateSpeed={0.28}
+        autoRotateSpeed={0.26}
       />
     </>
   );
@@ -110,8 +88,8 @@ export default function VehicleViewer({ type, paint, compact, autoRotate, classN
         <Canvas
           dpr={compact ? [1, 1.25] : [1, 1.75]}
           camera={{
-            position: compact ? [3.4, tall ? 1.2 : 1.05, 4.5] : [4.15, tall ? 1.18 : 1.02, 4.85],
-            fov: compact ? 32 : 26,
+            position: compact ? [3.8, tall ? 1.35 : 1.15, 5.1] : [4.6, tall ? 1.32 : 1.12, 5.4],
+            fov: compact ? 34 : 28,
           }}
           gl={{ antialias: true, toneMapping: ACESFilmicToneMapping, outputColorSpace: SRGBColorSpace }}
         >
