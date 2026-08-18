@@ -43,10 +43,10 @@ function Stage({ type, paint, compact, autoRotate }: Omit<Props, "className">) {
     <>
       <color attach="background" args={["#000000"]} />
       <Environment files="/env/studio.hdr" background={false} environmentIntensity={0.95} />
-      <ambientLight intensity={0.06} />
-      <directionalLight position={[3.6, 6.8, 3.2]} intensity={1.25} />
-      <directionalLight position={[-5.2, 2.4, -2.8]} intensity={0.32} color="#c5d0dc" />
-      <directionalLight position={[0.2, 2.8, 5.4]} intensity={0.35} />
+      <ambientLight intensity={0.1} />
+      <directionalLight position={[3.2, 7.2, 2.8]} intensity={0.85} />
+      <directionalLight position={[-5.2, 2.4, -2.8]} intensity={0.38} color="#c5d0dc" />
+      <directionalLight position={[0.2, 2.8, 5.4]} intensity={0.28} />
       <Car type={type} paint={paint} segments={light ? 24 : 56} />
       <ContactShadows opacity={0.58} scale={16} blur={2.6} far={3.4} color="#000" />
       {!light && (
