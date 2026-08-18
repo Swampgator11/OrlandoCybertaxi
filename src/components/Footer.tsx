@@ -12,6 +12,10 @@ export default function Footer() {
             Private Cybercab and Model Y service across Greater Orlando. Not affiliated
             with Tesla, Inc. beyond operating Tesla vehicles.
           </p>
+          <p className="tiny muted">
+            Photos: Cybercab by Ulkl (public domain); Model Y Juniper by Damian B Oh
+            (CC BY-SA 4.0), via Wikimedia Commons.
+          </p>
         </div>
         <div>
           <strong>Dispatch</strong>

@@ -215,6 +215,23 @@ p.lede {
 
 .viewer canvas { width: 100% !important; height: 100% !important; touch-action: none; }
 
+.viewer.turntable {
+  touch-action: none;
+  cursor: grab;
+  overflow: hidden;
+  user-select: none;
+}
+
+.viewer.turntable:active { cursor: grabbing; }
+
+.viewer.turntable img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  pointer-events: none;
+}
+
 .viewer-hint {
   position: absolute;
   left: 16px;

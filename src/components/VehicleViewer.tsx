@@ -1,9 +1,6 @@
-import { Suspense, useEffect, useMemo } from "react";
-import { Canvas } from "@react-three/fiber";
-import { ContactShadows, Environment, MeshReflectorMaterial, OrbitControls } from "@react-three/drei";
-import { ACESFilmicToneMapping, SRGBColorSpace, type Group, type Mesh } from "three";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Paint, VehicleType } from "../data/fleet";
-import { buildCybercab, buildModelY } from "../vehicles/buildVehicles";
+import { framesFor } from "../data/turntable";
 
 type Props = {
   type: VehicleType;
@@ -13,90 +10,62 @@ type Props = {
   className?: string;
 };
 
-function Car({ type, paint, segments }: { type: VehicleType; paint: Paint; segments: number }) {
-  const object = useMemo<Group>(() => {
-    return type === "cybercab" ? buildCybercab(paint, segments) : buildModelY(paint, segments);
-  }, [type, paint, segments]);
+export default function VehicleViewer({ type, paint, compact, autoRotate, className = "" }: Props) {
+  const frames = useMemo(() => framesFor(type, paint), [type, paint]);
+  const [index, setIndex] = useState(0);
+  const drag = useRef<{ x: number; start: number } | null>(null);
+  const wrap = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    return () => {
-      object.traverse((child) => {
-        const mesh = child as Mesh;
-        mesh.geometry?.dispose();
-        const mat = mesh.material;
-        if (Array.isArray(mat)) mat.forEach((m) => m.dispose());
-        else mat?.dispose();
-      });
-    };
-  }, [object]);
+    setIndex(0);
+    frames.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, [frames]);
 
-  return <primitive object={object} />;
-}
+  useEffect(() => {
+    if (autoRotate === false || frames.length < 2) return;
+    const id = window.setInterval(() => {
+      if (drag.current) return;
+      setIndex((i) => (i + 1) % frames.length);
+    }, 1400);
+    return () => window.clearInterval(id);
+  }, [autoRotate, frames.length]);
 
-function Stage({ type, paint, compact, autoRotate }: Omit<Props, "className">) {
-  const mobile = typeof window !== "undefined" && window.matchMedia("(max-width: 720px)").matches;
-  const light = Boolean(compact || mobile);
-  const tall = type === "model-y";
-  const targetY = tall ? 0.78 : 0.62;
+  const move = (clientX: number) => {
+    const el = wrap.current;
+    if (!drag.current || !el || frames.length < 2) return;
+    const width = el.clientWidth || 1;
+    const delta = clientX - drag.current.x;
+    const steps = Math.round((delta / width) * frames.length * 1.6);
+    if (steps === 0) return;
+    const next = (drag.current.start - steps) % frames.length;
+    setIndex(next < 0 ? next + frames.length : next);
+  };
 
   return (
-    <>
-      <color attach="background" args={["#000000"]} />
-      <Environment files="/env/studio.hdr" background={false} environmentIntensity={0.95} />
-      <ambientLight intensity={0.1} />
-      <directionalLight position={[3.2, 7.2, 2.8]} intensity={0.85} />
-      <directionalLight position={[-5.2, 2.4, -2.8]} intensity={0.38} color="#c5d0dc" />
-      <directionalLight position={[0.2, 2.8, 5.4]} intensity={0.28} />
-      <Car type={type} paint={paint} segments={light ? 24 : 56} />
-      <ContactShadows opacity={0.58} scale={16} blur={2.6} far={3.4} color="#000" />
-      {!light && (
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.001, 0]}>
-          <circleGeometry args={[10, 64]} />
-          <MeshReflectorMaterial
-            blur={[280, 70]}
-            resolution={768}
-            mixBlur={1}
-            mixStrength={26}
-            roughness={0.9}
-            color="#080808"
-            metalness={0.58}
-          />
-        </mesh>
+    <div
+      ref={wrap}
+      className={`viewer turntable ${compact ? "compact" : ""} ${className}`.trim()}
+      onPointerDown={(e) => {
+        drag.current = { x: e.clientX, start: index };
+        wrap.current?.setPointerCapture(e.pointerId);
+      }}
+      onPointerMove={(e) => move(e.clientX)}
+      onPointerUp={() => {
+        drag.current = null;
+      }}
+      onPointerCancel={() => {
+        drag.current = null;
+      }}
+    >
+      {frames[index] ? (
+        <img src={frames[index]} alt={type === "cybercab" ? "Cybercab" : "Model Y"} draggable={false} />
+      ) : (
+        <div className="viewer-fallback" />
       )}
-      <OrbitControls
-        makeDefault
-        enablePan={false}
-        enableDamping
-        dampingFactor={0.06}
-        target={[0, targetY, 0]}
-        minPolarAngle={0.88}
-        maxPolarAngle={1.4}
-        minDistance={compact ? 5.2 : 4.8}
-        maxDistance={compact ? 8.4 : 9.2}
-        autoRotate={autoRotate !== false}
-        autoRotateSpeed={0.26}
-      />
-    </>
-  );
-}
-
-export default function VehicleViewer({ type, paint, compact, autoRotate, className = "" }: Props) {
-  const tall = type === "model-y";
-  return (
-    <div className={`viewer ${compact ? "compact" : ""} ${className}`.trim()}>
-      <Suspense fallback={<div className="viewer-fallback" />}>
-        <Canvas
-          dpr={compact ? [1, 1.25] : [1, 1.75]}
-          camera={{
-            position: compact ? [3.8, tall ? 1.35 : 1.15, 5.1] : [4.6, tall ? 1.32 : 1.12, 5.4],
-            fov: compact ? 34 : 28,
-          }}
-          gl={{ antialias: true, toneMapping: ACESFilmicToneMapping, outputColorSpace: SRGBColorSpace }}
-        >
-          <Stage type={type} paint={paint} compact={compact} autoRotate={autoRotate} />
-        </Canvas>
-      </Suspense>
-      <p className="viewer-hint">Drag to orbit · pinch or scroll to zoom</p>
+      <p className="viewer-hint">Drag to orbit · real photographs</p>
     </div>
   );
 }

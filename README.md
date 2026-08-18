@@ -13,20 +13,17 @@ npm run dev
 
 Open the printed local URL (default `http://localhost:5173`).
 
-## 3D vehicles
+## Vehicle photos
 
-Original hard-surface studio cars (not Tesla marketing files, not sphere morphs).
+The site does **not** use homemade 3D meshes. Orbit is a Tesla-style photograph turntable of real cars.
 
-Source of truth is `src/vehicles/buildVehicles.ts`:
+- Cybercab: Stockholm showroom walkaround by Ulkl (public domain). Champagne unit, butterfly doors, aero discs.
+- Model Y Juniper pearl: Damian B Oh, CC BY-SA 4.0.
+- Model Y Juniper Quicksilver (stealth chip): Damian B Oh, CC BY-SA 4.0.
 
-- Cybercab: extruded Giga Texas silhouette (wheel wells, hood, high belt, solid rear), butterfly greenhouse glass, full-width light bar, aero discs, no mirrors / no rear window.
-- Model Y: extruded Juniper crossover (ride height, C-pillar, hatch), glass roof, mirrors, five-spoke wheels, full-width bars.
-- Materials: automotive PBR (metallic/unpainted champagne, pearl, stealth grey) with clearcoat, transmitting glass, rubber tires, emissive bars.
-- Stage: black studio, Poly Haven `studio_small_08` HDRI (`public/env/studio.hdr`, CC0), wrap + rim lights, contact shadow, floor reflection, ACES. Phones skip the reflector and use a lighter mesh.
+Credits live in the footer and `public/turntable/ATTRIBUTION.md`.
 
-Exported copies: `public/models/cybercab.glb` and `public/models/model-y.glb` (`npm run export:models`).
-
-Orbit: drag. Zoom: pinch or scroll. Paint chips switch champagne/pearl (Cybercab) and pearl/stealth (Model Y). Inspector: `/inspect/cybercab` and `/inspect/model-y`.
+Drag to orbit. Champagne/Pearl chips keep the real Cybercab photos (no fake tint). Pearl/Stealth switch the two Juniper photo sets. Inspector: `/inspect/cybercab` and `/inspect/model-y`.
 
 ## Interior films
 
