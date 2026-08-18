@@ -3,11 +3,12 @@ import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
 
 const links = [
+  { to: "/inspect/cybercab", label: "Cybercab" },
+  { to: "/inspect/model-y", label: "Model Y" },
   { to: "/book", label: "Book" },
   { to: "/fleet", label: "Fleet" },
   { to: "/coverage", label: "Coverage" },
-  { to: "/rides", label: "My rides" },
-  { to: "/contact", label: "Contact" },
+  { to: "/rides", label: "Rides" },
 ];
 
 export default function Nav() {

@@ -1,25 +1,30 @@
-import { photoFor, type Paint, type VehicleType } from "../data/fleet";
+import { lazy, Suspense } from "react";
+import type { Paint, VehicleType } from "../data/fleet";
+
+const VehicleViewer = lazy(() => import("./VehicleViewer"));
 
 type Props = {
   type: VehicleType;
   paint?: Paint;
   alt: string;
   className?: string;
+  compact?: boolean;
 };
 
-export function VehiclePortrait({ type, paint, alt, className = "" }: Props) {
+export function VehiclePortrait({ type, paint = type === "cybercab" ? "gold" : "white", alt, compact = true }: Props) {
   return (
-    <figure className={`portrait ${className}`.trim()}>
-      <img src={photoFor(type, paint)} alt={alt} />
-      <span className="portrait-shine" />
-    </figure>
+    <div aria-label={alt}>
+      <Suspense fallback={<div className="viewer-fallback" />}>
+        <VehicleViewer type={type} paint={paint} compact={compact} />
+      </Suspense>
+    </div>
   );
 }
 
 export function CybercabArt() {
-  return <VehiclePortrait type="cybercab" paint="gold" alt="Tesla Cybercab" />;
+  return <VehiclePortrait type="cybercab" paint="gold" alt="Cybercab" />;
 }
 
 export function ModelYArt() {
-  return <VehiclePortrait type="model-y" paint="white" alt="Tesla Model Y" />;
+  return <VehiclePortrait type="model-y" paint="white" alt="Model Y" />;
 }

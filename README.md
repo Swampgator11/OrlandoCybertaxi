@@ -13,18 +13,38 @@ npm run dev
 
 Open the printed local URL (default `http://localhost:5173`).
 
+## 3D vehicles
+
+Original studio models (not Tesla marketing files) live in `public/models/cybercab.glb` and `public/models/model-y.glb`.
+
+- Desktop: loads the GLB, studio lighting, ground contact shadow.
+- Mobile / compact cards: a lighter runtime mesh (fewer segments).
+- Orbit: drag. Zoom: pinch or scroll. Paint chips switch champagne/pearl (Cybercab) and pearl/stealth (Model Y).
+- Full inspector: `/inspect/cybercab` and `/inspect/model-y`.
+
+Regenerate meshes:
+
+```bash
+npm run export:models
+```
+
+## Interior films
+
+Looping muted cabin video (original, not Tesla stock):
+
+- `/film/cybercab-cabin.mp4` — lounge bench, screen, butterfly door, no wheel
+- `/film/modely-cabin.mp4` — glass roof, five-seat cabin
+
+Posters: `/film/cabin-*.jpg`
+
 ## Book a ride
 
-The booking flow quotes a fare from Orlando pins (MCO, Disney, Universal, downtown, and more), assigns a live vehicle from the hangar, and stores the confirmation in the browser.
+Quotes from Orlando pins, hangar assignment, confirmation stored in the browser.
 
-## Deploy on Vercel
+## Deploy
 
-Production (`orlando-cybertaxi.vercel.app`) builds **main**. Merge this branch before expecting that URL to work — an empty `main` deploys as a 404.
+```bash
+npm run build
+```
 
-In the Vercel project:
-
-1. Framework Preset: **Vite**
-2. Build Command: `npm run build`
-3. Output Directory: `dist`
-
-`vercel.json` already sets those and rewrites client routes (`/book`, `/fleet`, …) to `index.html`.
+`vercel.json` sets Vite + `dist` and rewrites client routes to `index.html`.

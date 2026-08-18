@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { VehiclePortrait } from "../components/VehicleArt";
 import { liveFleet, statusLabel } from "../lib/fleetStatus";
+
+const VehicleViewer = lazy(() => import("../components/VehicleViewer"));
 
 export default function Fleet() {
   const [vehicles, setVehicles] = useState(() => liveFleet());
+  const [active, setActive] = useState(vehicles[0]?.id ?? "CC-01");
 
   useEffect(() => {
     const id = window.setInterval(() => setVehicles(liveFleet()), 30_000);
     return () => window.clearInterval(id);
   }, []);
 
-  const cabs = vehicles.filter((v) => v.type === "cybercab");
-  const ys = vehicles.filter((v) => v.type === "model-y");
+  const selected = vehicles.find((v) => v.id === active) ?? vehicles[0];
   const open = vehicles.filter((v) => v.status === "available").length;
 
   return (
@@ -21,61 +22,45 @@ export default function Fleet() {
         <p className="kicker">Lake Nona hangar</p>
         <div className="section-head">
           <div>
-            <h2>The actual fleet</h2>
-            <p className="muted">
-              10 Cybercabs · 2 Model Y Juniper · {open} open on this board
-            </p>
+            <h2>Fleet</h2>
+            <p className="muted">12 units · {open} open · select a bay to orbit the car</p>
           </div>
-          <Link className="btn primary shine" to="/book">
-            Dispatch one
+          <Link className="btn primary" to={`/book?vehicle=${selected.type}`}>
+            Dispatch {selected.id}
           </Link>
         </div>
 
-        <p className="kicker">Robotaxi row</p>
-        <div className="fleet-grid">
-          {cabs.map((vehicle) => (
-            <article className={`panel vehicle-card bay ${vehicle.status}`} key={vehicle.id}>
-              <header>
-                <div>
-                  <strong className="unit">{vehicle.id}</strong>
-                  <div className="tiny muted">
-                    {vehicle.paint === "white" ? "Pearl Cybercab" : "Champagne Cybercab"} · 2 seats
-                  </div>
-                </div>
-                <span className={`pill ${vehicle.status}`}>{statusLabel[vehicle.status]}</span>
-              </header>
-              <VehiclePortrait type="cybercab" paint={vehicle.paint} alt={vehicle.name} />
-              <div className="tiny muted">
-                {vehicle.zone}
-                {vehicle.etaMin ? ` · ${vehicle.etaMin} min` : ""}
-                <div>{vehicle.notes}</div>
-              </div>
-            </article>
-          ))}
+        <div className="hangar-stage">
+          <Suspense fallback={<div className="viewer-fallback tall" />}>
+            <VehicleViewer type={selected.type} paint={selected.paint} key={selected.id} />
+          </Suspense>
+          <div className="hangar-meta">
+            <strong className="unit">{selected.id}</strong>
+            <p className="muted">
+              {selected.type === "cybercab" ? "Cybercab" : "Model Y"} · {selected.seats} seats · {selected.zone}
+              {selected.etaMin ? ` · ${selected.etaMin} min` : ""}
+            </p>
+            <p className="tiny muted">{selected.notes}</p>
+            <Link className="btn ghost" to={`/inspect/${selected.type}?paint=${selected.paint}&unit=${selected.id}`}>
+              Open inspector
+            </Link>
+          </div>
         </div>
 
-        <p className="kicker" style={{ marginTop: 36 }}>
-          Crew row
-        </p>
-        <div className="fleet-grid crew">
-          {ys.map((vehicle) => (
-            <article className={`panel vehicle-card bay wide ${vehicle.status}`} key={vehicle.id}>
-              <header>
-                <div>
-                  <strong className="unit">{vehicle.id}</strong>
-                  <div className="tiny muted">
-                    {vehicle.paint === "grey" ? "Stealth Grey" : "Pearl White"} Model Y · 5 seats
-                  </div>
-                </div>
-                <span className={`pill ${vehicle.status}`}>{statusLabel[vehicle.status]}</span>
-              </header>
-              <VehiclePortrait type="model-y" paint={vehicle.paint} alt={vehicle.name} />
-              <div className="tiny muted">
-                {vehicle.zone}
-                {vehicle.etaMin ? ` · ${vehicle.etaMin} min` : ""}
-                <div>{vehicle.notes}</div>
-              </div>
-            </article>
+        <div className="bay-list">
+          {vehicles.map((vehicle) => (
+            <button
+              key={vehicle.id}
+              type="button"
+              className={`bay-row ${vehicle.id === selected.id ? "on" : ""} ${vehicle.status}`}
+              onClick={() => setActive(vehicle.id)}
+            >
+              <span className="unit">{vehicle.id}</span>
+              <span className="tiny muted">
+                {vehicle.type === "cybercab" ? "Cybercab" : "Model Y"} · {vehicle.paint === "gold" ? "Champagne" : vehicle.paint === "grey" ? "Stealth" : "Pearl"}
+              </span>
+              <span className={`pill ${vehicle.status}`}>{statusLabel[vehicle.status]}</span>
+            </button>
           ))}
         </div>
       </div>

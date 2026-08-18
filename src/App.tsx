@@ -6,6 +6,7 @@ import Contact from "./pages/Contact";
 import Coverage from "./pages/Coverage";
 import Fleet from "./pages/Fleet";
 import Home from "./pages/Home";
+import Inspect from "./pages/Inspect";
 import Rides from "./pages/Rides";
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/book" element={<Book />} />
+        <Route path="/inspect/:type" element={<Inspect />} />
         <Route path="/fleet" element={<Fleet />} />
         <Route path="/coverage" element={<Coverage />} />
         <Route path="/rides" element={<Rides />} />

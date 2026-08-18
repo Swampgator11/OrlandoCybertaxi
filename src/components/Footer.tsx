@@ -26,11 +26,13 @@ export default function Footer() {
         <div>
           <strong>Go</strong>
           <p className="tiny">
+            <Link to="/inspect/cybercab">Inspect Cybercab</Link>
+            <br />
+            <Link to="/inspect/model-y">Inspect Model Y</Link>
+            <br />
             <Link to="/book">Book a ride</Link>
             <br />
-            <Link to="/fleet">Live fleet</Link>
-            <br />
-            <Link to="/coverage">Service area</Link>
+            <Link to="/fleet">Hangar</Link>
           </p>
         </div>
       </div>

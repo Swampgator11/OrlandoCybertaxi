@@ -11,10 +11,10 @@ export type Vehicle = {
   notes: string;
 };
 
-const CYBERCAB_GOLD = "/fleet/cybercab-gold.webp";
-const CYBERCAB_WHITE = "/fleet/cybercab-white.webp";
-const MODEL_Y_WHITE = "/fleet/model-y-white.webp";
-const MODEL_Y_GREY = "/fleet/model-y-grey.webp";
+const CYBERCAB_GOLD = "/film/cabin-cybercab-a.jpg";
+const CYBERCAB_WHITE = "/film/cabin-cybercab-b.jpg";
+const MODEL_Y_WHITE = "/film/cabin-modely-a.jpg";
+const MODEL_Y_GREY = "/film/cabin-modely-b.jpg";
 
 export const fleet: Vehicle[] = [
   ...Array.from({ length: 10 }, (_, i) => {

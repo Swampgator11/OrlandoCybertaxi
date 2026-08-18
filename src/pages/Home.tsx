@@ -1,111 +1,116 @@
+import { lazy, Suspense, useState } from "react";
 import { Link } from "react-router-dom";
+import CabinFilm from "../components/CabinFilm";
 import { company } from "../data/company";
-import { VehiclePortrait } from "../components/VehicleArt";
+import type { Paint } from "../data/fleet";
+
+const VehicleViewer = lazy(() => import("../components/VehicleViewer"));
 
 export default function Home() {
+  const [cabPaint, setCabPaint] = useState<Paint>("gold");
+  const [yPaint, setYPaint] = useState<Paint>("white");
+
   return (
     <>
-      <section className="hero-stage">
-        <img
-          className="hero-photo"
-          src="/fleet/hero-cybercab-orlando.webp"
-          alt="Champagne Tesla Cybercab on a wet Orlando night"
-        />
-        <div className="hero-veil" />
-        <div className="hero-scan" />
-        <div className="shell hero-copy">
-          <p className="kicker pulse">Greater Orlando · unsupervised two-seaters · 24/7</p>
-          <h1>
-            Gold Cybercabs.
-            <br />
-            <em>Orlando after dark.</em>
-          </h1>
+      <section className="stage">
+        <div className="stage-copy">
+          <p className="kicker">Orlando · 10 robotaxis · 2 Model Y</p>
+          <h1>Cybercab</h1>
           <p className="lede">
-            Ten Tesla Cybercabs — butterfly doors, lounge bench, no steering wheel —
-            plus two Juniper Model Ys for the party, the stroller, and MCO.
+            Two seats. No wheel. Stainless studio, not a nightclub. Drag the car.
           </p>
-          <div className="row" style={{ marginTop: 22 }}>
-            <Link className="btn primary shine" to="/book">
-              Book a ride
+          <div className="chips">
+            <button type="button" className={cabPaint === "gold" ? "on" : ""} onClick={() => setCabPaint("gold")}>
+              Champagne
+            </button>
+            <button type="button" className={cabPaint === "white" ? "on" : ""} onClick={() => setCabPaint("white")}>
+              Pearl
+            </button>
+          </div>
+          <div className="row">
+            <Link className="btn primary" to="/book?vehicle=cybercab">
+              Book
             </Link>
-            <Link className="btn ghost" to="/fleet">
-              Walk the hangar
+            <Link className="btn ghost" to="/inspect/cybercab">
+              Inspect
+            </Link>
+          </div>
+        </div>
+        <Suspense fallback={<div className="viewer-fallback tall" />}>
+          <VehicleViewer type="cybercab" paint={cabPaint} />
+        </Suspense>
+      </section>
+
+      <CabinFilm
+        src="/film/cybercab-cabin.mp4"
+        poster="/film/cabin-cybercab-a.jpg"
+        caption="Cybercab cabin — lounge bench, 24-inch screen, butterfly door, no steering wheel."
+      />
+
+      <section className="stage invert">
+        <Suspense fallback={<div className="viewer-fallback tall" />}>
+          <VehicleViewer type="model-y" paint={yPaint} />
+        </Suspense>
+        <div className="stage-copy">
+          <p className="kicker">MY-01 · MY-02</p>
+          <h1>Model Y</h1>
+          <p className="lede">
+            Five seats, glass roof, cargo. Pearl or stealth. Safety operator on board.
+          </p>
+          <div className="chips">
+            <button type="button" className={yPaint === "white" ? "on" : ""} onClick={() => setYPaint("white")}>
+              Pearl
+            </button>
+            <button type="button" className={yPaint === "grey" ? "on" : ""} onClick={() => setYPaint("grey")}>
+              Stealth
+            </button>
+          </div>
+          <div className="row">
+            <Link className="btn primary" to="/book?vehicle=model-y">
+              Book
+            </Link>
+            <Link className="btn ghost" to="/inspect/model-y">
+              Inspect
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="section stats-band">
-        <div className="shell stats">
-          <div className="stat">
-            <b>{company.fleet.cybercab}</b>
-            <span>Cybercabs</span>
-          </div>
-          <div className="stat">
-            <b>{company.fleet.modelY}</b>
-            <span>Model Y Juniper</span>
-          </div>
-          <div className="stat">
-            <b>2</b>
-            <span>Seats in a Cybercab</span>
-          </div>
-          <div className="stat">
-            <b>5</b>
-            <span>Seats in a Model Y</span>
-          </div>
-        </div>
-      </section>
+      <CabinFilm
+        src="/film/modely-cabin.mp4"
+        poster="/film/cabin-modely-a.jpg"
+        caption="Model Y cabin — panoramic glass roof, five seats, operator yoke."
+      />
 
       <section className="section">
         <div className="shell">
-          <div className="section-head">
-            <div>
-              <p className="kicker">The actual cars</p>
-              <h2>Not a pod. Not a minivan.</h2>
+          <p className="kicker">Fleet</p>
+          <h2>{company.fleet.total} vehicles. One city.</h2>
+          <div className="stats">
+            <div className="stat">
+              <b>10</b>
+              <span>Cybercab</span>
+            </div>
+            <div className="stat">
+              <b>2</b>
+              <span>Model Y</span>
+            </div>
+            <div className="stat">
+              <b>2</b>
+              <span>Seats, cab</span>
+            </div>
+            <div className="stat">
+              <b>5</b>
+              <span>Seats, Y</span>
             </div>
           </div>
-          <div className="grid-2 lineup">
-            <Link to="/book?vehicle=cybercab" className="panel vehicle-feature">
-              <VehiclePortrait type="cybercab" paint="gold" alt="Champagne Tesla Cybercab" />
-              <div>
-                <p className="kicker">CC-01 → CC-10</p>
-                <h3>Cybercab</h3>
-                <p className="muted">
-                  Teardrop two-seater. Champagne or pearl unpainted body, aero discs,
-                  butterfly doors, 24-inch cabin screen. Built as a robotaxi from scratch.
-                </p>
-              </div>
-            </Link>
-            <Link to="/book?vehicle=model-y" className="panel vehicle-feature">
-              <VehiclePortrait type="model-y" paint="white" alt="Pearl White Tesla Model Y" />
-              <div>
-                <p className="kicker">MY-01 · MY-02</p>
-                <h3>Model Y Juniper</h3>
-                <p className="muted">
-                  Full-width light bar, glass roof, five seats and a trunk. Pearl White
-                  and Stealth Grey, with a safety operator for luggage and car seats.
-                </p>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="shell">
-          <div className="section-head">
-            <div>
-              <p className="kicker">How it works</p>
-              <h2>Pin, quote, roll.</h2>
-            </div>
-          </div>
-          <div className="grid-3">
+          <div className="grid-3" style={{ marginTop: 36 }}>
             {[
-              ["1. Pin both ends", "MCO, Magic Kingdom, CityWalk, Lake Eola, or any Orlando address."],
-              ["2. Match the vehicle", "Cybercab if it is two of you. Model Y if you have luggage or a crew."],
-              ["3. Hold the receipt", "You get a fare, an assigned car from the live hangar, and a trip ID."],
+              ["Pin both ends", "MCO, the parks, downtown, or any Orlando address."],
+              ["Match the vehicle", "Cybercab for two. Model Y for luggage and a crew."],
+              ["Keep the receipt", "Fare, assigned unit, trip ID — on this device."],
             ].map(([title, body]) => (
-              <article className="panel glow-card" key={title}>
+              <article className="panel" key={title}>
                 <h3>{title}</h3>
                 <p className="muted">{body}</p>
               </article>
