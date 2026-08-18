@@ -51,12 +51,12 @@ export default function Home() {
             <p className="kicker">Right now</p>
             <h3>Pick the shape of the trip</h3>
             <div className="choice" style={{ marginTop: 16 }}>
-              <Link to="/book?vehicle=cybercab" className="panel" style={{ padding: 12, boxShadow: "none" }}>
+              <Link to="/book?vehicle=cybercab">
                 <CybercabArt />
                 <strong>Cybercab</strong>
                 <p className="tiny muted">Couples, solo riders, hotel ↔ park.</p>
               </Link>
-              <Link to="/book?vehicle=model-y" className="panel" style={{ padding: 12, boxShadow: "none" }}>
+              <Link to="/book?vehicle=model-y">
                 <ModelYArt />
                 <strong>Model Y</strong>
                 <p className="tiny muted">Airport bags, car seats, up to five.</p>
