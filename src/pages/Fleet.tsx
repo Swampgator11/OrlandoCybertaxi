@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { CybercabArt, ModelYArt } from "../components/VehicleArt";
+import { VehiclePortrait } from "../components/VehicleArt";
 import { liveFleet, statusLabel } from "../lib/fleetStatus";
 
 export default function Fleet() {
@@ -11,32 +11,65 @@ export default function Fleet() {
     return () => window.clearInterval(id);
   }, []);
 
+  const cabs = vehicles.filter((v) => v.type === "cybercab");
+  const ys = vehicles.filter((v) => v.type === "model-y");
   const open = vehicles.filter((v) => v.status === "available").length;
 
   return (
-    <section className="section">
+    <section className="section hangar">
       <div className="shell">
-        <p className="kicker">Hangar</p>
+        <p className="kicker">Lake Nona hangar</p>
         <div className="section-head">
           <div>
-            <h2>12 vehicles on the board</h2>
-            <p className="muted">10 Cybercabs · 2 Model Y · {open} open right now</p>
+            <h2>The actual fleet</h2>
+            <p className="muted">
+              10 Cybercabs · 2 Model Y Juniper · {open} open on this board
+            </p>
           </div>
-          <Link className="btn primary" to="/book">
+          <Link className="btn primary shine" to="/book">
             Dispatch one
           </Link>
         </div>
+
+        <p className="kicker">Robotaxi row</p>
         <div className="fleet-grid">
-          {vehicles.map((vehicle) => (
-            <article className="panel vehicle-card" key={vehicle.id}>
+          {cabs.map((vehicle) => (
+            <article className={`panel vehicle-card bay ${vehicle.status}`} key={vehicle.id}>
               <header>
                 <div>
-                  <strong>{vehicle.id}</strong>
-                  <div className="tiny muted">{vehicle.seats} seats</div>
+                  <strong className="unit">{vehicle.id}</strong>
+                  <div className="tiny muted">
+                    {vehicle.paint === "white" ? "Pearl Cybercab" : "Champagne Cybercab"} · 2 seats
+                  </div>
                 </div>
                 <span className={`pill ${vehicle.status}`}>{statusLabel[vehicle.status]}</span>
               </header>
-              {vehicle.type === "cybercab" ? <CybercabArt /> : <ModelYArt />}
+              <VehiclePortrait type="cybercab" paint={vehicle.paint} alt={vehicle.name} />
+              <div className="tiny muted">
+                {vehicle.zone}
+                {vehicle.etaMin ? ` · ${vehicle.etaMin} min` : ""}
+                <div>{vehicle.notes}</div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <p className="kicker" style={{ marginTop: 36 }}>
+          Crew row
+        </p>
+        <div className="fleet-grid crew">
+          {ys.map((vehicle) => (
+            <article className={`panel vehicle-card bay wide ${vehicle.status}`} key={vehicle.id}>
+              <header>
+                <div>
+                  <strong className="unit">{vehicle.id}</strong>
+                  <div className="tiny muted">
+                    {vehicle.paint === "grey" ? "Stealth Grey" : "Pearl White"} Model Y · 5 seats
+                  </div>
+                </div>
+                <span className={`pill ${vehicle.status}`}>{statusLabel[vehicle.status]}</span>
+              </header>
+              <VehiclePortrait type="model-y" paint={vehicle.paint} alt={vehicle.name} />
               <div className="tiny muted">
                 {vehicle.zone}
                 {vehicle.etaMin ? ` · ${vehicle.etaMin} min` : ""}

@@ -8,6 +8,7 @@
   --citrus: #ff5a1f;
   --citrus-2: #ff8a4c;
   --gold: #e6c37a;
+  --gold-2: #fff1c2;
   --aqua: #7ee0c8;
   --ok: #8adf7a;
   --warn: #f0c36a;
@@ -37,7 +38,10 @@ html {
 
 body {
   margin: 0;
-  background: var(--void);
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(230, 195, 122, 0.12), transparent 55%),
+    radial-gradient(900px 400px at 110% 0%, rgba(255, 90, 31, 0.12), transparent 50%),
+    var(--void);
   color: var(--steel);
   font-family: var(--sans);
   line-height: 1.5;
@@ -175,7 +179,11 @@ h1 {
 
 h1 em {
   font-style: normal;
-  color: var(--citrus);
+  background: linear-gradient(90deg, var(--gold-2), var(--citrus), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 18px rgba(255, 90, 31, 0.35));
 }
 
 h2 {
@@ -268,8 +276,24 @@ p.lede {
 }
 
 .btn.primary {
-  background: var(--citrus);
+  background: linear-gradient(90deg, #ff7a2e, var(--citrus) 40%, #ffb347);
   color: #1a0b05;
+  box-shadow: 0 0 0 1px rgba(255, 177, 71, 0.35), 0 10px 40px rgba(255, 90, 31, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn.primary.shine::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -40%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: shine 2.8s ease-in-out infinite;
+}
+
+@keyframes shine {
+  to { left: 140%; }
 }
 
 .btn.ghost {
@@ -348,9 +372,41 @@ p.lede {
 .pill.charging { color: var(--charge); border-color: color-mix(in srgb, var(--charge) 40%, transparent); }
 .pill.staged { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 40%, transparent); }
 
-.art {
+.art,
+.portrait {
   width: 100%;
-  height: 72px;
+  display: block;
+  margin: 0;
+}
+
+.portrait {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #07080c;
+  aspect-ratio: 16 / 10;
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 62%;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.portrait-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 40%, rgba(255, 241, 194, 0.12) 48%, transparent 56%);
+  pointer-events: none;
+}
+
+.vehicle-card:hover .portrait img,
+.vehicle-feature:hover .portrait img,
+.choice button:hover .portrait img {
+  transform: scale(1.06);
 }
 
 .form {
@@ -523,15 +579,184 @@ textarea:focus {
   font-size: 13px;
 }
 
+.ticker {
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(90deg, rgba(230, 195, 122, 0.08), transparent 20%, transparent 80%, rgba(255, 90, 31, 0.1));
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.ticker-track {
+  display: flex;
+  gap: 48px;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+  padding: 8px 0;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+.hero-stage {
+  position: relative;
+  min-height: min(88vh, 860px);
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 55%;
+}
+
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 8, 12, 0.88) 0%, rgba(7, 8, 12, 0.35) 52%, rgba(7, 8, 12, 0.2) 100%),
+    linear-gradient(180deg, rgba(7, 8, 12, 0.2), rgba(7, 8, 12, 0.82));
+}
+
+.hero-scan {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0 3px,
+    rgba(255, 255, 255, 0.015) 3px 4px
+  );
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  padding: 80px 0 56px;
+  max-width: 1180px;
+}
+
+.kicker.pulse {
+  animation: pulse-k 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-k {
+  50% { opacity: 0.55; }
+}
+
+.stats-band {
+  padding: 28px 0 8px;
+}
+
+.stats-band .stat {
+  background: linear-gradient(180deg, rgba(230, 195, 122, 0.08), rgba(22, 24, 31, 0.8));
+  box-shadow: inset 0 1px 0 rgba(255, 241, 194, 0.12);
+}
+
+.vehicle-feature {
+  overflow: hidden;
+  padding: 12px;
+  display: grid;
+  gap: 12px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.vehicle-feature:hover {
+  transform: translateY(-4px);
+  border-color: rgba(230, 195, 122, 0.45);
+}
+
+.vehicle-feature .portrait {
+  aspect-ratio: 16 / 9;
+}
+
+.glow-card {
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(255, 90, 31, 0.12), transparent 55%),
+    var(--panel);
+}
+
+.hangar {
+  background:
+    radial-gradient(800px 200px at 50% 0%, rgba(230, 195, 122, 0.1), transparent 70%);
+}
+
+.unit {
+  font-family: "Orbitron", var(--mono), sans-serif;
+  letter-spacing: 0.08em;
+  font-size: 18px;
+}
+
+.vehicle-card {
+  padding: 14px;
+  min-height: unset;
+  gap: 10px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 40%),
+    var(--panel);
+}
+
+.vehicle-card.bay {
+  box-shadow: var(--shadow), inset 0 -40px 40px rgba(0, 0, 0, 0.35);
+}
+
+.vehicle-card.bay.available {
+  border-color: color-mix(in srgb, var(--ok) 35%, var(--line));
+}
+
+.vehicle-card.bay.charging .portrait img {
+  filter: saturate(0.7) hue-rotate(20deg);
+}
+
+.vehicle-card.bay.en-route .portrait img {
+  filter: contrast(1.08) saturate(1.1);
+}
+
+.pill.open {
+  box-shadow: 0 0 12px rgba(138, 223, 122, 0.35);
+}
+
+.fleet-grid.crew {
+  grid-template-columns: 1fr 1fr;
+}
+
+.choice .portrait {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 8px;
+}
+
+.brand span {
+  background: linear-gradient(180deg, #fff, var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 @media (max-width: 900px) {
   .hero-grid,
   .grid-2,
   .grid-3,
   .fleet-grid,
+  .fleet-grid.crew,
   .footer-grid,
   .stats,
   .ride-row {
     grid-template-columns: 1fr;
+  }
+
+  .hero-stage {
+    min-height: 72vh;
   }
 
   .menu-btn {
