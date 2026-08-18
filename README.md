@@ -17,6 +17,14 @@ Open the printed local URL (default `http://localhost:5173`).
 
 The booking flow quotes a fare from Orlando pins (MCO, Disney, Universal, downtown, and more), assigns a live vehicle from the hangar, and stores the confirmation in the browser.
 
-```bash
-npm run build
-```
+## Deploy on Vercel
+
+Production (`orlando-cybertaxi.vercel.app`) builds **main**. Merge this branch before expecting that URL to work — an empty `main` deploys as a 404.
+
+In the Vercel project:
+
+1. Framework Preset: **Vite**
+2. Build Command: `npm run build`
+3. Output Directory: `dist`
+
+`vercel.json` already sets those and rewrites client routes (`/book`, `/fleet`, …) to `index.html`.
