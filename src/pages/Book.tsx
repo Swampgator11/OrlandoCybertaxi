@@ -168,10 +168,10 @@ export default function Book() {
   return (
     <section className="section">
       <div className="shell">
-        <p className="kicker">Request a vehicle</p>
+        <p className="kicker">Dispatch desk</p>
         <div className="section-head">
-          <h2>Book an Orlando ride</h2>
-          <p className="muted tiny">Quotes are instant. Confirmation lives on this device.</p>
+          <h2>File a ride</h2>
+          <p className="muted tiny">Quotes are instant. The confirmation lives on this device.</p>
         </div>
         <form className="grid-2" onSubmit={onSubmit}>
           <div className="panel form">

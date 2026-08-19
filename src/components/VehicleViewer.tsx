@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Paint, VehicleType } from "../data/fleet";
 import { framesFor } from "../data/turntable";
+import Bezel from "./Bezel";
 
 type Props = {
   type: VehicleType;
@@ -45,27 +46,28 @@ export default function VehicleViewer({ type, paint, compact, autoRotate, classN
   };
 
   return (
-    <div
-      ref={wrap}
-      className={`viewer turntable ${compact ? "compact" : ""} ${className}`.trim()}
-      onPointerDown={(e) => {
-        drag.current = { x: e.clientX, start: index };
-        wrap.current?.setPointerCapture(e.pointerId);
-      }}
-      onPointerMove={(e) => move(e.clientX)}
-      onPointerUp={() => {
-        drag.current = null;
-      }}
-      onPointerCancel={() => {
-        drag.current = null;
-      }}
-    >
-      {frames[index] ? (
-        <img src={frames[index]} alt={type === "cybercab" ? "Cybercab" : "Model Y"} draggable={false} />
-      ) : (
-        <div className="viewer-fallback" />
-      )}
-      <p className="viewer-hint">Drag to orbit · real photographs</p>
-    </div>
+    <Bezel compact={compact} plaque={compact ? undefined : "Drag to orbit · real photographs"} className={className}>
+      <div
+        ref={wrap}
+        className={`viewer turntable ${compact ? "compact" : ""}`.trim()}
+        onPointerDown={(e) => {
+          drag.current = { x: e.clientX, start: index };
+          wrap.current?.setPointerCapture(e.pointerId);
+        }}
+        onPointerMove={(e) => move(e.clientX)}
+        onPointerUp={() => {
+          drag.current = null;
+        }}
+        onPointerCancel={() => {
+          drag.current = null;
+        }}
+      >
+        {frames[index] ? (
+          <img src={frames[index]} alt={type === "cybercab" ? "Cybercab" : "Model Y"} draggable={false} />
+        ) : (
+          <div className="viewer-fallback" />
+        )}
+      </div>
+    </Bezel>
   );
 }

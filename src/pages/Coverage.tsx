@@ -16,7 +16,7 @@ export default function Coverage() {
   return (
     <section className="section">
       <div className="shell">
-        <p className="kicker">Service area</p>
+        <p className="kicker">Chart of the city</p>
         <div className="section-head">
           <h2>Greater Orlando, pinned.</h2>
           <Link className="btn ghost" to="/book">
@@ -25,9 +25,11 @@ export default function Coverage() {
         </div>
         <div className="panel coverage-map">
           <svg width="100%" height="420" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-            <rect width="100" height="100" fill="#101218" />
-            <path d="M8 72 C 30 60, 55 78, 92 58" stroke="rgba(255,90,31,.35)" fill="none" strokeWidth="1.2" />
-            <path d="M20 18 C 40 40, 48 55, 70 92" stroke="rgba(126,224,200,.25)" fill="none" strokeWidth="1" />
+            <rect width="100" height="100" fill="#1a140c" />
+            <path d="M8 72 C 30 60, 55 78, 92 58" stroke="rgba(196,163,90,.45)" fill="none" strokeWidth="1.1" />
+            <path d="M20 18 C 40 40, 48 55, 70 92" stroke="rgba(184,115,74,.38)" fill="none" strokeWidth="1" />
+            <circle cx="88" cy="14" r="7" fill="none" stroke="rgba(196,163,90,.35)" strokeWidth="0.6" />
+            <path d="M88 8 v4 M88 16 v4 M82 14 h4 M90 14 h4" stroke="rgba(232,208,138,.45)" strokeWidth="0.5" />
           </svg>
           {hubs.map((hub) => {
             const left = toPct(hub.lng, minLng, maxLng);

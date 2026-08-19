@@ -14,10 +14,11 @@ export default function Home() {
     <>
       <section className="stage">
         <div className="stage-copy">
-          <p className="kicker">Orlando · 10 robotaxis · 2 Model Y</p>
+          <p className="kicker">Lake Nona hangar · 10 Cybercab · 2 Model Y</p>
           <h1>Cybercab</h1>
           <p className="lede">
-            Two seats. No wheel. Stainless studio, not a nightclub. Drag the car.
+            Two seats. No wheel. Hangar light, not a nightclub. Drag the car —
+            these are real photographs.
           </p>
           <div className="chips">
             <button type="button" className={cabPaint === "gold" ? "on" : ""} onClick={() => setCabPaint("gold")}>
@@ -52,7 +53,7 @@ export default function Home() {
           <VehicleViewer type="model-y" paint={yPaint} />
         </Suspense>
         <div className="stage-copy">
-          <p className="kicker">MY-01 · MY-02</p>
+          <p className="kicker">MY-01 · MY-02 · operator aboard</p>
           <h1>Model Y</h1>
           <p className="lede">
             Five seats, glass roof, cargo. Pearl or stealth. Safety operator on board.
@@ -84,7 +85,7 @@ export default function Home() {
 
       <section className="section">
         <div className="shell">
-          <p className="kicker">Fleet</p>
+          <p className="kicker">The hangar</p>
           <h2>{company.fleet.total} vehicles. One city.</h2>
           <div className="stats">
             <div className="stat">

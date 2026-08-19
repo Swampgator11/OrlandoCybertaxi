@@ -9,7 +9,7 @@ export default function Rides() {
   return (
     <section className="section">
       <div className="shell">
-        <p className="kicker">Trip log</p>
+        <p className="kicker">Trip ledger</p>
         <div className="section-head">
           <h2>My rides</h2>
           <Link className="btn primary" to="/book">

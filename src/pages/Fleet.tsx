@@ -22,7 +22,7 @@ export default function Fleet() {
         <p className="kicker">Lake Nona hangar</p>
         <div className="section-head">
           <div>
-            <h2>Fleet</h2>
+            <h2>Bays</h2>
             <p className="muted">12 units · {open} open · select a bay to orbit the car</p>
           </div>
           <Link className="btn primary" to={`/book?vehicle=${selected.type}`}>

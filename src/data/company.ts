@@ -1,7 +1,7 @@
 export const company = {
   name: "Orlando Cybertaxi",
   shortName: "OCT",
-  tagline: "Twelve vehicles. The whole city.",
+  tagline: "Twelve vehicles. The whole city. Lake Nona dispatch.",
   city: "Orlando, Florida",
   email: "dispatch@orlandocybertaxi.com",
   ownerEmail: "john@anarchyaleworks.com",

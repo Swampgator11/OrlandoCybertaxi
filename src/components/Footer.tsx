@@ -18,8 +18,10 @@ export default function Footer() {
           </p>
         </div>
         <div>
-          <strong>Dispatch</strong>
+          <strong className="engraved">Dispatch office</strong>
           <p className="tiny">
+            {company.hub}
+            <br />
             {company.phone}
             <br />
             {company.email}
@@ -28,15 +30,17 @@ export default function Footer() {
           </p>
         </div>
         <div>
-          <strong>Go</strong>
+          <strong className="engraved">Board</strong>
           <p className="tiny">
             <Link to="/inspect/cybercab">Inspect Cybercab</Link>
             <br />
             <Link to="/inspect/model-y">Inspect Model Y</Link>
             <br />
-            <Link to="/book">Book a ride</Link>
+            <Link to="/book">File a ride</Link>
             <br />
-            <Link to="/fleet">Hangar</Link>
+            <Link to="/fleet">Hangar bays</Link>
+            <br />
+            <Link to="/contact">Talk to the desk</Link>
           </p>
         </div>
       </div>

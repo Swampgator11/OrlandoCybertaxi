@@ -25,7 +25,7 @@ export default function Confirmation() {
     <section className="section">
       <div className="shell grid-2">
         <div className="receipt">
-          <p className="tiny">ORLANDO CYBERTAXI · TRIP RECEIPT</p>
+          <p className="tiny">ORLANDO CYBERTAXI · TRIP RECEIPT · LAKE NONA</p>
           <h2>{ride.id}</h2>
           <p>
             {ride.pickup}
@@ -46,7 +46,7 @@ export default function Confirmation() {
           <p className="tiny">Status: {ride.status.toUpperCase()}</p>
         </div>
         <div className="panel">
-          <p className="kicker">Dispatch</p>
+          <p className="kicker">Dispatch board</p>
           <h3>Your car is on the board</h3>
           <p className="muted">
             {ride.assignedVehicle} is assigned. Meet curbside with this trip ID. Cancel
