@@ -19,7 +19,7 @@ export default function Rides() {
         {rides.length === 0 ? (
           <div className="panel">
             <p>No trips on this device yet.</p>
-            <Link to="/book">Book the first one</Link>
+            <Link to="/book">Reserve the first one</Link>
           </div>
         ) : (
           <div className="rides-list">

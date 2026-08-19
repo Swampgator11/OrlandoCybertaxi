@@ -34,4 +34,6 @@ Real photographs of display units. Not a generated lounge interior.
 
 The cabin film `/film/cybercab-cabin.mp4` is a stills sequence of those frames (cropped). Same architecture as the production cabin: two flat shiny seats, landscape center display, cupholders, no steering wheel or pedals.
 
+Sit-inside and trunk stills, plus extra Model Y cabin and hatch photographs, are credited in `public/inspect/ATTRIBUTION.md`.
+
 The named Sketchfab Cybercab GLB by @zwir3kk (CC BY) could not be downloaded without a Sketchfab login, so this site uses the photograph turntable instead.

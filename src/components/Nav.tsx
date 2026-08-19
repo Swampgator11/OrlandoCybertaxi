@@ -5,7 +5,7 @@ import Logo from "./Logo";
 const links = [
   { to: "/inspect/cybercab", label: "Cybercab" },
   { to: "/inspect/model-y", label: "Model Y" },
-  { to: "/book", label: "Book" },
+  { to: "/book", label: "Reserve" },
   { to: "/fleet", label: "Hangar" },
   { to: "/coverage", label: "Coverage" },
   { to: "/rides", label: "Ledger" },

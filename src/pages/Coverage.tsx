@@ -20,7 +20,7 @@ export default function Coverage() {
         <div className="section-head">
           <h2>Greater Orlando, pinned.</h2>
           <Link className="btn ghost" to="/book">
-            Book from a pin
+            Reserve from a pin
           </Link>
         </div>
         <div className="panel coverage-map">

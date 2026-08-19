@@ -4,7 +4,7 @@ import CabinFilm from "../components/CabinFilm";
 import { company } from "../data/company";
 import type { Paint } from "../data/fleet";
 
-const VehicleViewer = lazy(() => import("../components/VehicleViewer"));
+const InspectBay = lazy(() => import("../components/InspectBay"));
 
 export default function Home() {
   const [cabPaint, setCabPaint] = useState<Paint>("gold");
@@ -17,8 +17,8 @@ export default function Home() {
           <p className="kicker">Lake Nona hangar · 10 Cybercab · 2 Model Y</p>
           <h1>Cybercab</h1>
           <p className="lede">
-            Two seats. No wheel. Hangar light, not a nightclub. Drag to orbit,
-            pinch or scroll to zoom — these are real photographs.
+            Two seats. No wheel. Sit inside, check the cargo well, or orbit the body —
+            real photographs, hangar light.
           </p>
           <div className="chips">
             <button type="button" className={cabPaint === "gold" ? "on" : ""} onClick={() => setCabPaint("gold")}>
@@ -30,7 +30,7 @@ export default function Home() {
           </div>
           <div className="row">
             <Link className="btn primary" to="/book?vehicle=cybercab">
-              Book
+              Reserve
             </Link>
             <Link className="btn ghost" to="/inspect/cybercab">
               Inspect
@@ -38,7 +38,7 @@ export default function Home() {
           </div>
         </div>
         <Suspense fallback={<div className="viewer-fallback tall" />}>
-          <VehicleViewer type="cybercab" paint={cabPaint} />
+          <InspectBay type="cybercab" paint={cabPaint} />
         </Suspense>
       </section>
 
@@ -48,15 +48,36 @@ export default function Home() {
         caption="Cybercab cabin — two flat seats, landscape center display, butterfly door, no steering wheel."
       />
 
+      <section className="section hail-band">
+        <div className="shell grid-2">
+          <article className="panel">
+            <p className="kicker">Tesla Robotaxi app</p>
+            <h3>Hail when you want the car</h3>
+            <p className="muted">{company.hail}</p>
+          </article>
+          <article className="panel">
+            <p className="kicker">This hangar</p>
+            <h3>Reserve hours ahead</h3>
+            <p className="muted">{company.reserve}</p>
+            <div className="row" style={{ marginTop: 16 }}>
+              <Link className="btn primary" to="/book">
+                File a reservation
+              </Link>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section className="stage invert">
         <Suspense fallback={<div className="viewer-fallback tall" />}>
-          <VehicleViewer type="model-y" paint={yPaint} />
+          <InspectBay type="model-y" paint={yPaint} />
         </Suspense>
         <div className="stage-copy">
           <p className="kicker">MY-01 · MY-02 · operator aboard</p>
           <h1>Model Y</h1>
           <p className="lede">
-            Five seats, glass roof, cargo. Pearl or stealth. Safety operator on board.
+            Five seats, glass roof, a proper cargo hatch. Pearl or stealth. Safety
+            operator on board.
           </p>
           <div className="chips">
             <button type="button" className={yPaint === "white" ? "on" : ""} onClick={() => setYPaint("white")}>
@@ -68,7 +89,7 @@ export default function Home() {
           </div>
           <div className="row">
             <Link className="btn primary" to="/book?vehicle=model-y">
-              Book
+              Reserve
             </Link>
             <Link className="btn ghost" to="/inspect/model-y">
               Inspect
@@ -109,7 +130,7 @@ export default function Home() {
             {[
               ["Pin both ends", "MCO, the parks, downtown, or any Orlando address."],
               ["Match the vehicle", "Cybercab for two. Model Y for luggage and a crew."],
-              ["Keep the receipt", "Fare, assigned unit, trip ID — on this device."],
+              ["Hours ahead, not now", "Robotaxi app for a street hail. This desk for a reservation."],
             ].map(([title, body]) => (
               <article className="panel" key={title}>
                 <h3>{title}</h3>

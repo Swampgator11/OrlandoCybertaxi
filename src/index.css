@@ -430,6 +430,14 @@ p.lede {
   color: var(--mute);
 }
 
+.viewer.stills .viewer-hint {
+  max-width: min(46ch, calc(100% - 140px));
+  padding: 6px 10px;
+  background: #100c08cc;
+  border: 1px solid rgba(110, 78, 34, 0.55);
+  color: var(--cream);
+}
+
 .viewer-fallback {
   height: 168px;
   background: radial-gradient(circle at 50% 40%, #2a1c12, #080605 70%);
@@ -487,8 +495,74 @@ p.lede {
 }
 
 .inspect { min-height: calc(100svh - 72px); padding-bottom: 28px; }
-.inspect .bezel { margin: 0 5vw; }
-.inspect .viewer { height: calc(100svh - 220px); }
+.inspect > .inspect-bay { margin: 0 5vw; }
+.inspect .viewer { height: calc(100svh - 260px); }
+
+.inspect-bay { display: grid; gap: 10px; min-width: 0; }
+
+.view-modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.view-modes button {
+  background: #140e0a;
+  border: 1px solid var(--bronze);
+  padding: 9px 14px;
+  cursor: pointer;
+  font-family: var(--plaque);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.view-modes button.on {
+  color: #1a1008;
+  background: linear-gradient(180deg, #ecd89a, #c4a35a);
+  border-color: var(--brass-bright);
+}
+
+.viewer.stills.cover img { object-fit: cover; }
+
+.still-step {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  background: linear-gradient(180deg, #2c1c14, #16100c);
+  border: 1px solid var(--bronze);
+  box-shadow: inset 0 1px 0 rgba(232, 208, 138, 0.16);
+}
+
+.still-step button {
+  width: 32px;
+  height: 28px;
+  border: 1px solid var(--bronze);
+  background: linear-gradient(180deg, #ecd89a, #c4a35a);
+  color: #1a1008;
+  font-family: var(--plaque);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.still-step span {
+  min-width: 44px;
+  text-align: center;
+  font-family: var(--plaque);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--brass-bright);
+}
+
+.hail-band { padding-top: 28px; padding-bottom: 12px; }
+.hail-pair { margin-bottom: 8px; }
 .inspect-bar {
   display: flex;
   align-items: center;
