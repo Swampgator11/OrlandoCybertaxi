@@ -82,10 +82,11 @@ video { max-width: 100%; display: block; }
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(20, 14, 10, 0.88);
+  background: rgba(26, 14, 12, 0.92);
   border-bottom: 1px solid var(--bronze);
   box-shadow:
-    0 1px 0 rgba(232, 208, 138, 0.18),
+    0 1px 0 rgba(232, 208, 138, 0.22),
+    inset 0 -3px 0 var(--oxblood),
     0 12px 28px rgba(0, 0, 0, 0.28);
 }
 
@@ -230,13 +231,14 @@ p.lede {
 
 .panel {
   background:
-    linear-gradient(180deg, rgba(196, 163, 90, 0.07), transparent 28%),
-    #1a120c;
+    linear-gradient(180deg, rgba(196, 163, 90, 0.1), transparent 22%),
+    linear-gradient(180deg, #2a1810, #16100c);
   border: 1px solid var(--bronze);
   padding: 22px;
   box-shadow:
-    inset 0 1px 0 rgba(232, 208, 138, 0.12),
-    0 10px 24px rgba(0, 0, 0, 0.2);
+    inset 0 1px 0 rgba(232, 208, 138, 0.18),
+    inset 0 0 0 6px #1a100c,
+    0 12px 28px rgba(0, 0, 0, 0.28);
 }
 
 .stats {
@@ -305,17 +307,19 @@ p.lede {
 .bezel {
   position: relative;
   margin: 0;
-  padding: 12px 12px 0;
+  padding: 16px 16px 0;
   background:
-    radial-gradient(circle at 12px 12px, #ecd89a 0 2.5px, #8a6233 3.5px 5px, transparent 6px),
-    radial-gradient(circle at calc(100% - 12px) 12px, #ecd89a 0 2.5px, #8a6233 3.5px 5px, transparent 6px),
-    radial-gradient(circle at 12px calc(100% - 12px), #ecd89a 0 2.5px, #8a6233 3.5px 5px, transparent 6px),
-    radial-gradient(circle at calc(100% - 12px) calc(100% - 12px), #ecd89a 0 2.5px, #8a6233 3.5px 5px, transparent 6px),
-    linear-gradient(160deg, #d4b56a 0%, #8a6233 42%, #3d2a10 100%);
+    radial-gradient(circle at 14px 14px, #ecd89a 0 3px, #6e4e22 4px 6px, transparent 7px),
+    radial-gradient(circle at calc(100% - 14px) 14px, #ecd89a 0 3px, #6e4e22 4px 6px, transparent 7px),
+    radial-gradient(circle at 14px calc(100% - 14px), #ecd89a 0 3px, #6e4e22 4px 6px, transparent 7px),
+    radial-gradient(circle at calc(100% - 14px) calc(100% - 14px), #ecd89a 0 3px, #6e4e22 4px 6px, transparent 7px),
+    radial-gradient(circle at 50% 10px, #d4b56a 0 2px, #6e4e22 3px 4.5px, transparent 5.5px),
+    radial-gradient(circle at 50% calc(100% - 10px), #d4b56a 0 2px, #6e4e22 3px 4.5px, transparent 5.5px),
+    linear-gradient(165deg, #e4c878 0%, #c4a35a 18%, #8a6233 48%, #4a3014 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 236, 190, 0.4),
-    inset 0 -2px 0 rgba(20, 10, 4, 0.45),
-    0 18px 40px rgba(0, 0, 0, 0.4);
+    inset 0 1px 0 rgba(255, 236, 190, 0.5),
+    inset 0 -3px 0 rgba(20, 10, 4, 0.5),
+    0 18px 40px rgba(0, 0, 0, 0.45);
 }
 
 .bezel-well {
@@ -326,16 +330,17 @@ p.lede {
 
 .plaque {
   margin: 0;
-  padding: 9px 12px 11px;
+  padding: 10px 14px 12px;
   text-align: center;
   font-family: var(--plaque);
   font-size: 10px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #1a1008;
   background:
-    linear-gradient(180deg, rgba(255, 236, 190, 0.18), transparent 40%),
-    linear-gradient(180deg, #d4b56a, #8a6233);
+    linear-gradient(180deg, rgba(255, 236, 190, 0.28), transparent 42%),
+    linear-gradient(180deg, #e4c878, #c4a35a 55%, #8a6233);
+  box-shadow: inset 0 -1px 0 rgba(60, 35, 10, 0.35);
 }
 
 .bezel.compact { padding: 7px; }
