@@ -1,12 +1,14 @@
 import type { Paint, VehicleType } from "./fleet";
 
-/** Real-photo frames. No tints. Cybercab pearl uses the same champagne studio set. */
+/** Real-photo frames in clockwise orbit order. No tints. Cybercab pearl uses the champagne studio set. */
 export const turntable: Record<VehicleType, Partial<Record<Paint, string[]>>> = {
   cybercab: {
     gold: [
       "/turntable/cybercab/01.jpg",
+      "/turntable/cybercab/10.jpg",
       "/turntable/cybercab/02.jpg",
       "/turntable/cybercab/07.jpg",
+      "/turntable/cybercab/08.jpg",
       "/turntable/cybercab/04.jpg",
       "/turntable/cybercab/03.jpg",
       "/turntable/cybercab/05.jpg",
@@ -16,18 +18,27 @@ export const turntable: Record<VehicleType, Partial<Record<Paint, string[]>>> = 
   "model-y": {
     white: [
       "/turntable/model-y-white/01.jpg",
+      "/turntable/model-y-white/02.jpg",
       "/turntable/model-y-white/03.jpg",
       "/turntable/model-y-white/04.jpg",
       "/turntable/model-y-white/10.jpg",
       "/turntable/model-y-white/05.jpg",
       "/turntable/model-y-white/06.jpg",
       "/turntable/model-y-white/07.jpg",
+      "/turntable/model-y-white/08.jpg",
+      "/turntable/model-y-white/09.jpg",
     ],
     grey: [
       "/turntable/model-y-grey/01.jpg",
+      "/turntable/model-y-grey/02.jpg",
+      "/turntable/model-y-grey/03.jpg",
       "/turntable/model-y-grey/04.jpg",
+      "/turntable/model-y-grey/05.jpg",
+      "/turntable/model-y-grey/06.jpg",
       "/turntable/model-y-grey/07.jpg",
+      "/turntable/model-y-grey/08.jpg",
       "/turntable/model-y-grey/10.jpg",
+      "/turntable/model-y-grey/11.jpg",
       "/turntable/model-y-grey/12.jpg",
     ],
   },

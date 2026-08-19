@@ -13,8 +13,9 @@ export default function Footer() {
             with Tesla, Inc. beyond operating Tesla vehicles.
           </p>
           <p className="tiny muted">
-            Photos: Cybercab by Ulkl (public domain); Model Y Juniper by Damian B Oh
-            (CC BY-SA 4.0), via Wikimedia Commons.
+            Photos: Cybercab exterior by Ulkl (public domain); cabin by Dllu
+            (CC BY-SA 4.0) and Steve Jurvetson (CC BY 2.0); Model Y Juniper by
+            Damian B Oh (CC BY-SA 4.0), via Wikimedia Commons.
           </p>
         </div>
         <div>

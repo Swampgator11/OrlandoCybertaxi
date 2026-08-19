@@ -23,13 +23,13 @@ The site does **not** use homemade 3D meshes. Orbit is a Tesla-style photograph 
 
 Credits live in the footer and `public/turntable/ATTRIBUTION.md`.
 
-Drag to orbit. Champagne/Pearl chips keep the real Cybercab photos (no fake tint). Pearl/Stealth switch the two Juniper photo sets. Inspector: `/inspect/cybercab` and `/inspect/model-y`.
+Drag to orbit (adjacent frames crossfade so it does not pop). Pinch, scroll, or the +/− plate to zoom; orbit still works while zoomed. Champagne/Pearl chips keep the real Cybercab photos (no fake tint). Pearl/Stealth switch the two Juniper photo sets. Inspector: `/inspect/cybercab` and `/inspect/model-y`.
 
 ## Interior films
 
-Looping muted cabin video (original, not Tesla stock):
+Looping muted cabin film:
 
-- `/film/cybercab-cabin.mp4` — lounge bench, screen, butterfly door, no wheel
+- `/film/cybercab-cabin.mp4` — real display-unit photographs (Dllu CC BY-SA 4.0; Steve Jurvetson CC BY 2.0). Two flat seats, landscape Tesla screen, no wheel.
 - `/film/modely-cabin.mp4` — glass roof, five-seat cabin
 
 Posters: `/film/cabin-*.jpg`
