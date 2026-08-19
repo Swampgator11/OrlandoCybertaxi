@@ -1,3 +1,5 @@
+import Bezel from "./Bezel";
+
 type Props = {
   src: string;
   poster: string;
@@ -7,18 +9,18 @@ type Props = {
 export default function CabinFilm({ src, poster, caption }: Props) {
   return (
     <section className="film">
-      <video
-        className="film-video"
-        src={src}
-        poster={poster}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-      />
-      <div className="film-veil" />
-      <p className="film-caption">{caption}</p>
+      <Bezel plaque={caption} className="film-frame">
+        <video
+          className="film-video"
+          src={src}
+          poster={poster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+      </Bezel>
     </section>
   );
 }

@@ -18,7 +18,7 @@ export default function Inspect() {
   return (
     <section className="inspect">
       <div className="inspect-bar">
-        <p className="kicker">{vehicle === "cybercab" ? "Cybercab" : "Model Y"}</p>
+        <p className="kicker">{vehicle === "cybercab" ? "Inspection bay · Cybercab" : "Inspection bay · Model Y"}</p>
         <div className="chips">
           {paints.map((p) => (
             <button key={p} type="button" className={paint === p ? "on" : ""} onClick={() => setPaint(p)}>

@@ -24,8 +24,8 @@ export default function Contact() {
     <section className="section">
       <div className="shell grid-2">
         <div>
-          <p className="kicker">Dispatch desk</p>
-          <h2>Talk to Orlando Cybertaxi</h2>
+          <p className="kicker">Dispatch office</p>
+          <h2>Talk to the desk</h2>
           <p className="lede">
             Lake Nona operations. We answer for airport stands, park exits, and downtown
             last-calls.

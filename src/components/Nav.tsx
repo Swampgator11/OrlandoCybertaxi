@@ -6,9 +6,10 @@ const links = [
   { to: "/inspect/cybercab", label: "Cybercab" },
   { to: "/inspect/model-y", label: "Model Y" },
   { to: "/book", label: "Book" },
-  { to: "/fleet", label: "Fleet" },
+  { to: "/fleet", label: "Hangar" },
   { to: "/coverage", label: "Coverage" },
-  { to: "/rides", label: "Rides" },
+  { to: "/rides", label: "Ledger" },
+  { to: "/contact", label: "Desk" },
 ];
 
 export default function Nav() {
