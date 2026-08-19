@@ -17,8 +17,8 @@ export default function Home() {
           <p className="kicker">Lake Nona hangar · 10 Cybercab · 2 Model Y</p>
           <h1>Cybercab</h1>
           <p className="lede">
-            Two seats. No wheel. Hangar light, not a nightclub. Drag the car —
-            these are real photographs.
+            Two seats. No wheel. Hangar light, not a nightclub. Drag to orbit,
+            pinch or scroll to zoom — these are real photographs.
           </p>
           <div className="chips">
             <button type="button" className={cabPaint === "gold" ? "on" : ""} onClick={() => setCabPaint("gold")}>
