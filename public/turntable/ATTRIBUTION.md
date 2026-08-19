@@ -21,4 +21,15 @@ Photographer **Damian B Oh**. CC BY-SA 4.0.
 
 - https://commons.wikimedia.org/wiki/File:Tesla_Model_Y_Dual_Motor_First_Edition_Juniper_Quicksilver_(1).jpg
 
+## Cybercab cabin
+
+Real photographs of display units. Not a generated lounge interior.
+
+- Santana Row, San Jose, 10 November 2024. Photographer **Dllu**. CC BY-SA 4.0.
+  https://commons.wikimedia.org/wiki/File:Tesla_Cybercab_at_Santana_Row_interior_dllu.jpg
+- We, Robot unveiling, Warner Bros. lot, 10 October 2024. Photographer **Steve Jurvetson**. CC BY 2.0.
+  https://commons.wikimedia.org/wiki/File:Inside_the_Tesla_Cybercab.jpg
+
+The cabin film `/film/cybercab-cabin.mp4` is a stills sequence of those frames (cropped). Same architecture as the production cabin: two flat shiny seats, landscape center display, cupholders, no steering wheel or pedals.
+
 The named Sketchfab Cybercab GLB by @zwir3kk (CC BY) could not be downloaded without a Sketchfab login, so this site uses the photograph turntable instead.

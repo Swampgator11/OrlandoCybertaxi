@@ -45,7 +45,7 @@ export default function Home() {
       <CabinFilm
         src="/film/cybercab-cabin.mp4"
         poster="/film/cabin-cybercab-a.jpg"
-        caption="Cybercab cabin — lounge bench, 24-inch screen, butterfly door, no steering wheel."
+        caption="Cybercab cabin — two flat seats, landscape center display, butterfly door, no steering wheel."
       />
 
       <section className="stage invert">

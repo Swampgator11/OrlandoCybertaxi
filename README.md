@@ -27,9 +27,9 @@ Drag to orbit. Champagne/Pearl chips keep the real Cybercab photos (no fake tint
 
 ## Interior films
 
-Looping muted cabin video (original, not Tesla stock):
+Looping muted cabin film:
 
-- `/film/cybercab-cabin.mp4` — lounge bench, screen, butterfly door, no wheel
+- `/film/cybercab-cabin.mp4` — real display-unit photographs (Dllu CC BY-SA 4.0; Steve Jurvetson CC BY 2.0). Two flat seats, landscape Tesla screen, no wheel.
 - `/film/modely-cabin.mp4` — glass roof, five-seat cabin
 
 Posters: `/film/cabin-*.jpg`

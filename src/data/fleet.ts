@@ -28,8 +28,8 @@ export const fleet: Vehicle[] = [
       paint: (white ? "white" : "gold") as Paint,
       photo: white ? CYBERCAB_WHITE : CYBERCAB_GOLD,
       notes: white
-        ? "Pearl unpainted Cybercab. Butterfly doors, lounge bench, no wheel."
-        : "Champagne Cybercab. Two-seat robotaxi, butterfly greenhouse, aero covers.",
+        ? "Pearl unpainted Cybercab. Butterfly doors, two flat seats, no wheel."
+        : "Champagne Cybercab. Two-seat robotaxi, landscape center display, butterfly doors.",
     };
   }),
   {
