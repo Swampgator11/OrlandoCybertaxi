@@ -1,6 +1,6 @@
 import { lazy, Suspense, useState } from "react";
 import type { Paint, VehicleType } from "../data/fleet";
-import { inspectModes, modePlaque, stillsFor, type InspectMode } from "../data/inspectViews";
+import { inspectModes, modePlaque, stillsFor, trunkEmptyNote, type InspectMode } from "../data/inspectViews";
 
 const VehicleViewer = lazy(() => import("./VehicleViewer"));
 const StillViewer = lazy(() => import("./StillViewer"));
@@ -22,6 +22,10 @@ export default function InspectBay({ type, paint, autoRotate, initialView = "ext
   }
 
   const stills = stillsFor(type, view);
+  const plaque =
+    view === "trunk" && stills.length === 0
+      ? (trunkEmptyNote[type] ?? modePlaque.trunk)
+      : modePlaque[view];
 
   return (
     <div className="inspect-bay">
@@ -45,7 +49,7 @@ export default function InspectBay({ type, paint, autoRotate, initialView = "ext
         ) : (
           <StillViewer
             stills={stills}
-            plaque={modePlaque[view]}
+            plaque={plaque}
             cover={view === "cabin"}
           />
         )}

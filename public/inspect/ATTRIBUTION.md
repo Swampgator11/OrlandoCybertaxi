@@ -12,15 +12,18 @@ Real vehicles. Not generated interiors.
 
 ## Cybercab trunk / hatch
 
-No license-clear photograph of an open production cargo well was available. These stills are real display-unit photographs of the rear hatch:
+No license-clear photograph of an **open** Cybercab cargo well is on file. Closed display-unit rear shots were removed — a closed tail is not a trunk inspect.
 
-- Rear of the Tesla Cybercab. Photographer **Steve Jurvetson**. CC BY 2.0.
-  https://commons.wikimedia.org/wiki/File:Rear_of_the_Tesla_Cybercab.jpg
-- Stockholm showroom rear three-quarter. Photographer **Ulkl**. Public domain.
-  https://commons.wikimedia.org/wiki/File:CybercabSTHLM2403.jpg
-  and CybercabSTHLM2404
+Search that did not yield a reusable open-hatch frame:
 
-Production units use a durable non-carpeted cargo well behind the two seats, with an interior trunk camera.
+- Wikimedia Commons `Category:Tesla Cybercab` (12 files) plus `Category:Cybercab in Sweden` (Ulkl Stockholm walkaround, 10 files). Hatch is down in every still, including Jurvetson *Rear of the Tesla Cybercab* and Ulkl `CybercabSTHLM2403` / `2404`.
+- Steve Jurvetson’s Flickr tag `cybercab` (7 photos, CC BY 2.0): Front, Rear (closed), Inside, plus people / drones / Optimus. No raised hatch.
+- Commons + Openverse + Flickr CC BY / CC BY-SA / public-domain queries for cybercab / robotaxi + trunk / hatch / cargo / liftgate / open.
+- Event coverage (We, Robot; Santana Row; Stockholm; VivaTech Paris; Berlin; San Francisco June 2026; Petersen prototype). Display units were photographed with the hatch closed.
+
+One real open-hatch photograph exists and is **not** reusable: Perico001 / Peter Bovyn, Brussels Motor Show, January 2025, Flickr `54333697387` — side profile with the rear hatch clearly up, license **All rights reserved**.
+
+Production units open the hatch onto a durable non-carpeted cargo floor behind the two seats, with an interior trunk camera. When a Commons or Flickr CC photograph of that well appears, it should replace this empty set.
 
 ## Model Y cabin
 
@@ -33,8 +36,15 @@ Production units use a durable non-carpeted cargo well behind the two seats, wit
 
 ## Model Y trunk / hatch
 
+Crops of one showroom photograph with the **liftgate raised** and the cargo well visible through the open aperture:
+
 - Tesla showroom, Dadeland Mall, 27 November 2023. Photographer **Phillip Pessar**. CC BY 2.0.
   https://commons.wikimedia.org/wiki/File:Tesla_Showroom_Dadeland_Mall,_27_November_2023_-_Hood_and_trunk_open.jpg
-- Tesla showroom, Dadeland Mall, 9 June 2023. Photographer **Phillip Pessar**. CC BY 2.0.
-  https://commons.wikimedia.org/wiki/File:Tesla_Showroom_Dadeland_Mall,_Miami_Florida_9_June_2023_-_1.jpg
-- Juniper Pearl White rear three-quarter. Photographer **Damian B Oh**. CC BY-SA 4.0.
+  Used for `trunk-01.jpg` (3/4, hatch and well), `trunk-02.jpg` (rear half, hatch up), `trunk-03.jpg` (tight on the raised liftgate).
+
+Not used (hatch down, or the cargo well is not visible):
+
+- Dadeland, 9 June 2023 — 1. Same photographer, CC BY 2.0. Liftgate is up, but the front 3/4 hides the cargo floor.
+- Juniper Pearl White rear three-quarter. Photographer **Damian B Oh**. CC BY-SA 4.0. Closed street tail.
+- Commons `Category:Tesla Model Y` / `Category:Tesla Model Y (2025)` walkarounds (Damian B Oh Quicksilver / Pearl White / Stealth Grey series): closed hatches.
+- Flickr CC BY / CC BY-SA / public-domain search for “Tesla Model Y trunk” returned no additional open-well stills.

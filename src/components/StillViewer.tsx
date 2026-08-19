@@ -164,7 +164,9 @@ export default function StillViewer({ stills, plaque, cover, className = "" }: P
               <img ref={imgB} src={frames[1] ?? frames[0]} alt="" draggable={false} />
             </>
           ) : (
-            <div className="viewer-fallback" />
+            <div className="viewer-fallback still-empty">
+              <p>{plaque}</p>
+            </div>
           )}
         </div>
         {frames.length > 1 && (
@@ -180,16 +182,20 @@ export default function StillViewer({ stills, plaque, cover, className = "" }: P
             </button>
           </div>
         )}
-        <div className="viewer-zoom" role="group" aria-label="Zoom">
-          <button type="button" aria-label="Zoom out" onClick={() => applyZoom(zoom.current / 1.18)}>
-            −
-          </button>
-          <span>{Math.round(zoomUi * 100)}%</span>
-          <button type="button" aria-label="Zoom in" onClick={() => applyZoom(zoom.current * 1.18)}>
-            +
-          </button>
-        </div>
-        <p className="viewer-hint">{note}</p>
+        {frames.length > 0 && (
+          <>
+            <div className="viewer-zoom" role="group" aria-label="Zoom">
+              <button type="button" aria-label="Zoom out" onClick={() => applyZoom(zoom.current / 1.18)}>
+                −
+              </button>
+              <span>{Math.round(zoomUi * 100)}%</span>
+              <button type="button" aria-label="Zoom in" onClick={() => applyZoom(zoom.current * 1.18)}>
+                +
+              </button>
+            </div>
+            <p className="viewer-hint">{note}</p>
+          </>
+        )}
       </div>
     </Bezel>
   );
