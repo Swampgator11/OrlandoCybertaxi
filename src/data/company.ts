@@ -13,4 +13,7 @@ export const company = {
     modelY: 2,
     total: 12,
   },
+  hail: "Need a car now? That tap lives in the Tesla Robotaxi app — street hails, as soon as one is free.",
+  reserve:
+    "This hangar books the ride hours ahead. Airport mornings, park exits, a downtown appointment. Not a three-minute street hail.",
 } as const;

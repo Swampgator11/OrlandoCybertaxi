@@ -49,8 +49,8 @@ export default function Confirmation() {
           <p className="kicker">Dispatch board</p>
           <h3>Your car is on the board</h3>
           <p className="muted">
-            {ride.assignedVehicle} is assigned. Meet curbside with this trip ID. Cancel
-            anytime before pickup.
+            {ride.assignedVehicle} is assigned for this reservation — hours ahead, not a
+            street hail. Meet curbside with this trip ID. Cancel anytime before pickup.
           </p>
           <div className="row">
             {ride.status !== "canceled" && ride.status !== "complete" && (

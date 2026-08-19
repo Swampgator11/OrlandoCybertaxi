@@ -2,9 +2,11 @@ import { useMemo, useState, type FormEvent } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { vehicleCopy, type VehicleType } from "../data/fleet";
 import { hubs, kindLabel, type Hub } from "../data/locations";
+import { company } from "../data/company";
 import { createRide, makeRideId } from "../lib/bookings";
 import { assignVehicle } from "../lib/fleetStatus";
 import { haversineMiles } from "../lib/geo";
+import { defaultPickup, earliestPickup, isHoursAhead, RESERVE_LEAD_HOURS, toLocalInput } from "../lib/reservations";
 import { formatUsd, quoteTrip } from "../lib/quotes";
 import { CybercabArt, ModelYArt } from "../components/VehicleArt";
 
@@ -77,11 +79,6 @@ function LocationFields({
   );
 }
 
-function toLocalInput(d: Date): string {
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
-
 export default function Book() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
@@ -96,12 +93,7 @@ export default function Book() {
   const [vehicle, setVehicle] = useState<VehicleType>(
     params.get("vehicle") === "model-y" ? "model-y" : "cybercab",
   );
-  const [when, setWhen] = useState(() => {
-    const d = new Date();
-    d.setMinutes(d.getMinutes() + 20);
-    d.setSeconds(0, 0);
-    return toLocalInput(d);
-  });
+  const [when, setWhen] = useState(() => toLocalInput(defaultPickup()));
   const [passengers, setPassengers] = useState(1);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -142,6 +134,10 @@ export default function Book() {
       setError(`This vehicle holds ${maxSeats} passengers.`);
       return;
     }
+    if (!isHoursAhead(new Date(when))) {
+      setError(`Pickup needs to be at least ${RESERVE_LEAD_HOURS} hours from now. Street hails use the Tesla Robotaxi app.`);
+      return;
+    }
     if (!name.trim() || !phone.trim()) {
       setError("Name and phone are required so dispatch can reach you.");
       return;
@@ -168,18 +164,35 @@ export default function Book() {
   return (
     <section className="section">
       <div className="shell">
-        <p className="kicker">Dispatch desk</p>
+        <p className="kicker">Dispatch desk · hours ahead</p>
         <div className="section-head">
-          <h2>File a ride</h2>
+          <h2>File a reservation</h2>
           <p className="muted tiny">Quotes are instant. The confirmation lives on this device.</p>
         </div>
-        <form className="grid-2" onSubmit={onSubmit}>
+        <div className="grid-2 hail-pair">
+          <article className="panel">
+            <p className="kicker">Tesla Robotaxi app</p>
+            <h3>Hail now</h3>
+            <p className="muted">{company.hail}</p>
+          </article>
+          <article className="panel">
+            <p className="kicker">This desk</p>
+            <h3>Reserve later</h3>
+            <p className="muted">{company.reserve}</p>
+          </article>
+        </div>
+        <form className="grid-2" onSubmit={onSubmit} style={{ marginTop: 20 }}>
           <div className="panel form">
             <LocationFields label="Pickup" value={pickup} onChange={setPickup} />
             <LocationFields label="Drop-off" value={dropoff} onChange={setDropoff} />
             <label>
-              When
-              <input type="datetime-local" value={when} onChange={(e) => setWhen(e.target.value)} />
+              Pickup time · at least {RESERVE_LEAD_HOURS} hours from now
+              <input
+                type="datetime-local"
+                min={toLocalInput(earliestPickup())}
+                value={when}
+                onChange={(e) => setWhen(e.target.value)}
+              />
             </label>
             <div>
               <span className="muted tiny">Vehicle</span>
@@ -254,7 +267,7 @@ export default function Book() {
             )}
             {error && <div className="error">{error}</div>}
             <button className="btn primary" type="submit" disabled={!quote}>
-              Confirm ride
+              Confirm reservation
             </button>
           </div>
         </form>

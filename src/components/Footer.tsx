@@ -15,7 +15,8 @@ export default function Footer() {
           <p className="tiny muted">
             Photos: Cybercab exterior by Ulkl (public domain); cabin by Dllu
             (CC BY-SA 4.0) and Steve Jurvetson (CC BY 2.0); Model Y Juniper by
-            Damian B Oh (CC BY-SA 4.0), via Wikimedia Commons.
+            Damian B Oh and Ethan Llamas (CC BY-SA 4.0); Model Y hatch by Phillip
+            Pessar (CC BY 2.0), via Wikimedia Commons.
           </p>
         </div>
         <div>
@@ -37,7 +38,7 @@ export default function Footer() {
             <br />
             <Link to="/inspect/model-y">Inspect Model Y</Link>
             <br />
-            <Link to="/book">File a ride</Link>
+            <Link to="/book">File a reservation</Link>
             <br />
             <Link to="/fleet">Hangar bays</Link>
             <br />

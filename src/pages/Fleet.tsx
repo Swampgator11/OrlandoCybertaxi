@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { liveFleet, statusLabel } from "../lib/fleetStatus";
 
-const VehicleViewer = lazy(() => import("../components/VehicleViewer"));
+const InspectBay = lazy(() => import("../components/InspectBay"));
 
 export default function Fleet() {
   const [vehicles, setVehicles] = useState(() => liveFleet());
@@ -23,7 +23,7 @@ export default function Fleet() {
         <div className="section-head">
           <div>
             <h2>Bays</h2>
-            <p className="muted">12 units · {open} open · select a bay to orbit the car</p>
+            <p className="muted">12 units · {open} open · orbit, sit inside, or open the trunk</p>
           </div>
           <Link className="btn primary" to={`/book?vehicle=${selected.type}`}>
             Dispatch {selected.id}
@@ -32,7 +32,7 @@ export default function Fleet() {
 
         <div className="hangar-stage">
           <Suspense fallback={<div className="viewer-fallback tall" />}>
-            <VehicleViewer type={selected.type} paint={selected.paint} key={selected.id} />
+            <InspectBay type={selected.type} paint={selected.paint} key={selected.id} />
           </Suspense>
           <div className="hangar-meta">
             <strong className="unit">{selected.id}</strong>
