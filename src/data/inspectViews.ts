@@ -31,16 +31,19 @@ export const cabinStills: Record<VehicleType, Still[]> = {
 };
 
 export const trunkStills: Record<VehicleType, Still[]> = {
-  cybercab: [
-    { src: "/inspect/cybercab/trunk-01.jpg", note: "The rear hatch. Production units open this onto a durable cargo well." },
-    { src: "/inspect/cybercab/trunk-02.jpg", note: "Hatch at the back of the two-seater — bags go here, not in a lounge." },
-    { src: "/inspect/cybercab/trunk-03.jpg", note: "Doors up, hatch at the tail. An interior trunk camera watches the well." },
-  ],
+  // No license-clear open-hatch Cybercab photograph exists on Commons / Flickr CC.
+  // Closed display-unit rears were removed — a closed tail is not a trunk inspect.
+  cybercab: [],
   "model-y": [
-    { src: "/inspect/model-y/trunk-01.jpg", note: "Hatch and frunk open — conventional cargo, not a sedan slit." },
-    { src: "/inspect/model-y/trunk-02.jpg", note: "White Juniper with the liftgate up. Groceries, strollers, park bags." },
-    { src: "/inspect/model-y/trunk-03.jpg", note: "The hatch from the street. Power liftgate, glass roof to the tail." },
+    { src: "/inspect/model-y/trunk-01.jpg", note: "Liftgate up — cargo well behind the rear bench, not a sedan slit." },
+    { src: "/inspect/model-y/trunk-02.jpg", note: "Hatch raised on the grey Y. Groceries, strollers, park bags go here." },
+    { src: "/inspect/model-y/trunk-03.jpg", note: "Power liftgate open onto the cargo floor and parcel shelf." },
   ],
+};
+
+export const trunkEmptyNote: Partial<Record<VehicleType, string>> = {
+  cybercab:
+    "No license-clear open-hatch photograph is on file. Production wells are a durable cargo floor behind the two seats, watched by an interior trunk camera.",
 };
 
 export const modePlaque: Record<InspectMode, string> = {

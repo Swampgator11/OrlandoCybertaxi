@@ -443,6 +443,28 @@ p.lede {
   background: radial-gradient(circle at 50% 40%, #2a1c12, #080605 70%);
 }
 
+.viewer-fallback.still-empty {
+  position: absolute;
+  inset: 0;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 36px;
+}
+
+.viewer-fallback.still-empty p {
+  margin: 0;
+  max-width: 42ch;
+  text-align: center;
+  font-family: var(--plaque);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  line-height: 1.55;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
 .viewer-fallback.tall { height: min(68vh, 680px); }
 
 .chips { display: flex; gap: 8px; margin: 18px 0; }
